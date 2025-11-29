@@ -13,4 +13,5 @@ popd
 
 # Why does this work?
 echo "Linking both..."
-g++ main.cc -Llib1/target/debug -Llib2/target/debug -llib1 -llib2  -o out-both
+g++ main.cc -Wall -Werror -Wl,--whole-archive -Llib1/target/debug -Llib2/target/debug -llib1 -llib2\
+     -Wl,--no-whole-archive  -o out-both
