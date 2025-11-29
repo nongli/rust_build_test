@@ -11,10 +11,6 @@ pushd lib2
 cargo build
 popd
 
-# This works
-echo "Linking just lib 1..."
-g++ main.cc -Llib1/target/debug -llib1 -o out-lib1-only
-
 # Why does this work?
 echo "Linking both..."
 g++ main.cc -Llib1/target/debug -Llib2/target/debug -llib1 -llib2  -o out-both

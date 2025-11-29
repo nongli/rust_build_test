@@ -4,5 +4,5 @@ use std::collections::HashMap;
 pub extern "C" fn rust_function_2() {
   let mut m = HashMap::new();
   m.insert(1, "a");
-  print!("FN2 {}", m.len());
+  println!("FN2 {}", m.len());
 }
