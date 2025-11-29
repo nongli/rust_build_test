@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 echo "Building lib1..."
 pushd lib1
@@ -15,4 +16,5 @@ echo "Linking just lib 1..."
 g++ main.cc -Llib1/target/debug -llib1 -o out-lib1-only
 
 # Why does this work?
+echo "Linking just lib 1..."
 g++ main.cc -Llib1/target/debug -Llib2/target/debug -llib1 -llib2  -o out-both
