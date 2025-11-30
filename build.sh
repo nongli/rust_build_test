@@ -11,13 +11,25 @@ pushd lib2
 cargo build
 popd
 
+echo "Building combined..."
+pushd combined_lib
+cargo build
+popd
+
 if [[ $OSTYPE == 'darwin'* ]]; then
   FULL_LINK=-all_load
 else
   FULL_LINK=--whole-archive
 fi
 
-echo "Linking both..."
+echo "Linking combined..."
+g++ main.cc \
+  -Wall -Werror \
+  -Wl,$FULL_LINK \
+  -Lcombined_lib/target/debug -lcombined_lib\
+  -o out-combined
+
+echo "Linking both, fails..."
 g++ main.cc \
   -Wall -Werror \
   -Wl,$FULL_LINK \
