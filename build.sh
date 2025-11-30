@@ -29,9 +29,10 @@ g++ main.cc \
   -Lcombined_lib/target/debug -lcombined_lib\
   -o out-combined
 
-echo "Linking both, fails..."
-g++ main.cc \
-  -Wall -Werror \
-  -Wl,$FULL_LINK \
-  -Llib1/target/debug -Llib2/target/debug -llib1 -llib2\
-  -o out-both
+# This does not work, this shows the issue with linking two libs
+#echo "Linking both, fails..."
+#g++ main.cc \
+#  -Wall -Werror \
+#  -Wl,$FULL_LINK \
+#  -Llib1/target/debug -Llib2/target/debug -llib1 -llib2\
+#  -o out-both
