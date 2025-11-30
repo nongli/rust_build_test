@@ -11,7 +11,15 @@ pushd lib2
 cargo build
 popd
 
-# Why does this work?
+if [[ $OSTYPE == 'darwin'* ]]; then
+  FULL_LINK=-all_load
+else
+  FULL_LINK=--whole-archive
+fi
+
 echo "Linking both..."
-g++ main.cc -Wall -Werror -Wl,--whole-archive -Llib1/target/debug -Llib2/target/debug -llib1 -llib2\
-     -Wl,--no-whole-archive  -o out-both
+g++ main.cc \
+  -Wall -Werror \
+  -Wl,$FULL_LINK \
+  -Llib1/target/debug -Llib2/target/debug -llib1 -llib2\
+  -o out-both
